@@ -1,0 +1,34 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">@localizer["Email"]</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">@localizer["UserName"]</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@localizer["Role"] @ViewBag.Role </label>
+                <a asp-action="ChangeRole" asp-route-id="@Model.Id" class="btn btn-outline-primary">Change role</a>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@localizer["Save"]" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@localizer["Back"]</a>
+</div>
+

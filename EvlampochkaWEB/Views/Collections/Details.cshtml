@@ -1,0 +1,62 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model EvlampochkaWEB.Models.Collection
+
+
+<div>
+    <hr />
+    <div class="row">
+        <aside class="col-sm-5 border-right">
+            <div class="item-gallery"> <img src="https://i.pinimg.com/550x/e7/fc/7e/e7fc7e7b2487dd45b813d852acbfdacf.jpg" width="450"> </div>
+            <!-- gallery-wrap .end// -->
+        </aside>
+        <aside class="col-sm-7">
+            <article class="card-body p-5">
+                <h3 class="title mb-3">@Model.CollectionName</h3>
+                <dl class="item-property">
+                    <dt>@localizer["Theme"]</dt>
+                    <dd>
+                        <p>
+                            @Model.Theme
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="item-property">
+                    <dt>@localizer["ShortDiscription"]</dt>
+                    <dd>
+                        <p>
+                            @Model.ShortDiscription
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="item-property">
+                    <dt>@localizer["LongDiscription"]</dt>
+                    <dd>
+                        <p>
+                            @Model.LongDiscrioption
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="item-property">
+                    <dt>@localizer["Owner"]</dt>
+                    <dd>
+                        <p>
+                            @ViewBag.UserName
+                        </p>
+                    </dd>
+                </dl>
+            </article> <!-- card-body.// -->
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+</div>
+<div>
+    @if (ViewBag.isRealUser)
+    {
+    <a asp-controller="Collections" asp-action="Edit" asp-route-id="@Model.CollectionId">@localizer["Edit"]</a>
+    <a asp-controller="Collections" asp-action="IndexForAuth">@localizer["Back"]</a>
+    }
+    else
+    {
+<a asp-controller="Collections" asp-action="Index">@localizer["Back"]</a>
+    }
+
+</div>

@@ -1,0 +1,37 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">@localizer["Email"]</label>
+                <input asp-for="Email" class="form-control" type="email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@localizer["Password"]</label>
+                <input name="password" class="form-control" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@localizer["Role"]</label>
+                <select name="role" class="form-control" required>
+                    <option value="admin">@localizer["Admin"]</option>
+                    <option value="user" selected>@localizer["User"]</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@localizer["Create"]" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@localizer["Back"]</a>
+</div>
+

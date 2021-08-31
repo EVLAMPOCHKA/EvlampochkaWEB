@@ -1,0 +1,76 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<EvlampochkaWEB.Models.Item>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+
+    .card {
+        background: #f4fcf7;
+        border: 2px solid #18972e;
+        color: rgba(250, 250, 250, 0.8);
+        margin-bottom: 2rem;
+    }
+
+    .card-title {
+        color: #18972e;
+    }
+
+    .card-subtitle {
+        color: #26812b;
+    }
+
+    .card-text {
+        color: #000000;
+    }
+
+    .btn-dis {
+        margin: 5px;
+    }
+
+    .card-img-top {
+        height: 150px;
+        object-fit: cover;
+    }
+</style>
+
+
+@if (ViewBag.isRealUser)
+{
+    <p>
+        <a asp-controller="Items" asp-action="Create" asp-route-id="@ViewBag.CollectionId" class="btn btn-outline-primary">@localizer["CreateNew"]</a>
+    </p>
+}
+
+
+<section id="gallery">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="@item.ItemImage" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ItemName</h5>
+                            <h6 class="card-subtitle"><i class="fa fa-paperclip"></i>@item.Collection.Theme</h6>
+                            <a asp-controller="Items" asp-action="Details" asp-route-id="@item.ItemId" class="btn btn-outline-success btn-sm btn-dis">@localizer["ReadMore"]</a>
+                            @if (ViewBag.IsRealUser)
+                            {
+                        <a asp-controller="Items" asp-action="Edit" asp-route-id="@item.ItemId" class="btn btn-outline-info btn-sm btn-dis">@localizer["Edit"]</a>
+                        <a asp-controller="Items" asp-action="Delete" asp-route-id="@item.ItemId" class="btn btn-outline-dark btn-sm btn-dis">@localizer["Delete"]</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+@if (ViewBag.IsRealUser)
+{
+    <div>
+        <a asp-controller="Collections" asp-action="Details" asp-route-id="@ViewBag.CollectionId">@localizer["Collection"]</a>
+    </div>
+}
+

@@ -1,0 +1,11 @@
+﻿@page
+@model ConfirmEmailModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Registration successs!";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>
+    @localizer["Info"]
+</p>

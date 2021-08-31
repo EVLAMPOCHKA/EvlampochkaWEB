@@ -1,0 +1,187 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model EvlampochkaWEB.Models.Item
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="~/css/dropzone.min.css" />
+<style>
+    .bootstrap-tagsinput {
+        width: 100%;
+    }
+
+        .bootstrap-tagsinput .tag {
+            background: #4682B4;
+            border: 1px solid black;
+            padding: 0 6px;
+            margin-right: 2px;
+            color: white;
+            border-radius: 4px;
+        }
+</style>
+
+
+
+
+<div class="container">
+
+    <hr>
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-4 border-right">
+                <div class="item-gallery"> <img src="@Model.ItemImage" width="450"> </div>
+                <div id="dropzone">
+                    <form action="/Items/Upload" class="dropzone needsclick dz-clickable" id="uploader">
+                        <div class="dz-message needsclick">
+                            Upload new image.<br>
+                        </div>
+                        <script src="~/js/dropzone.min.js"></script>
+                    </form>
+                </div>
+
+            </aside>
+            <aside class="col-sm-8">
+                <article class="card-body p-5">
+                    <form asp-action="Edit">
+                        <h3 class="title mb-3">@localizer["Edit"]</h3>
+
+                        <dl class="item-property">
+                            <dt>@localizer["Info"]</dt>
+                            <dd>
+                                <p>
+                                    @localizer["Instruction"]
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl class="param param-feature">
+                            <dt>@localizer["Name"]</dt>
+                            <dd>
+                                <input asp-for="ItemName" class="form-control" required/>
+                                <span asp-validation-for="ItemName" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        <dl class="param param-feature">
+                            <dt>@localizer["Tags"]</dt>
+                            <dd>
+                                <input type="text" asp-for="Tags" data-role="tagsinput" name="tags" class="form-control" required placeholder="Enter tags" />
+                            </dd>
+                        </dl>
+                        @if (ViewBag.Fields[0] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[0]</dt>
+                            <dd>
+                                <input asp-for="AddStringField0" class="form-control" />
+                                <span asp-validation-for="AddStringField0" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[1] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[1]</dt>
+                            <dd>
+                                <input asp-for="AddStringField1" class="form-control" />
+                                <span asp-validation-for="AddStringField1" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[2] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[2]</dt>
+                            <dd>
+                                <input asp-for="AddStringField2" class="form-control" />
+                                <span asp-validation-for="AddStringField2" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[3] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[3]</dt>
+                            <dd>
+                                <input asp-for="AddDateTimeField0" class="form-control" />
+                                <span asp-validation-for="AddDateTimeField0" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[4] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[4]</dt>
+                            <dd>
+                                <input asp-for="AddDateTimeField1" class="form-control" />
+                                <span asp-validation-for="AddDateTimeField1" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[5] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>@ViewBag.Fields[5]</dt>
+                            <dd>
+                                <input asp-for="AddDateTimeField2" class="form-control" />
+                                <span asp-validation-for="AddDateTimeField2" class="text-danger"></span>
+                            </dd>
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[6] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>
+                                <input id="bool0" class="form-check-input" asp-for="AddBoolField0" />
+                                <label for="bool0"> @ViewBag.Fields[6]</label>
+                            </dt>
+
+
+
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[7] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>
+                                <input id="bool1" class="form-check-input" asp-for="AddBoolField1" />
+                                <label for="bool1"> @ViewBag.Fields[7]</label>
+                            </dt>
+
+                        </dl>
+                        }
+                        @if (ViewBag.Fields[8] != null)
+                        {
+                        <dl class="param param-feature">
+                            <dt>
+                                <input id="bool2" class="form-check-input" asp-for="AddBoolField2" />
+                                <label for="bool2"> @ViewBag.Fields[8]</label>
+                            </dt>
+
+
+                        </dl>
+                        }
+                        <input type="hidden" asp-for="ItemImage" />
+                        <input type="hidden" asp-for="CollectionID" />
+                        <input type="hidden" asp-for="ItemId" />
+                        <div class="form-group ">
+                            <input type="submit" value="@localizer["Save"]" class="btn btn-outline-info" />
+                        </div>
+                    </form>
+                </article> <!-- card-body.// -->
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
+    </div>
+
+
+</div>
+
+<div>
+    <a asp-controller="Items" asp-action="IndexForAuth" asp-route-id="@Model.CollectionID">@localizer["Back"]</a>
+</div>

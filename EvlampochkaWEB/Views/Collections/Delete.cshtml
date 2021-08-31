@@ -1,0 +1,60 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model EvlampochkaWEB.Models.Collection
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3> @localizer["Question"]</h3>
+<div class="row">
+    <aside class="col-sm-8 border-right">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @localizer["Name"]
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CollectionName)
+            </dd>
+            <dt class="col-sm-2">
+                @localizer["Theme"]
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Theme)
+            </dd>
+            <dt class="col-sm-2">
+                @localizer["ShortDiscription"]
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShortDiscription)
+            </dd>
+            <dt class="col-sm-2">
+                @localizer["LongDiscription"]
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LongDiscrioption)
+            </dd>
+
+        </dl>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CollectionId" />
+            <input type="submit" value="@localizer["Delete"]" class="btn btn-danger" /> |
+            <a asp-controller="Collections" asp-action="IndexForAuth">@localizer["Back"]</a>
+        </form>
+    </aside>
+    <aside class="col-sm-4">
+        <article>
+            <p>
+                @localizer["Info"]
+            </p>
+            <div>
+                <img src="https://i.pinimg.com/550x/e7/fc/7e/e7fc7e7b2487dd45b813d852acbfdacf.jpg" width="200" />
+            </div>
+        </article>
+
+    </aside>
+
+
+
+
+</div>

@@ -1,0 +1,72 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+@model IEnumerable<EvlampochkaWEB.Models.Collection>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+    .col-1-4 {
+        width: 25%;
+        float: left;
+    }
+    .col-2-4{
+        width:70%;
+        margin-left:10px;
+    }
+
+    .container:after, .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .row {
+        margin-bottom: 15px;
+    }
+
+    .btn-rounded {
+        margin: 5px;
+        border-radius: 15px;
+    }
+
+    .name {
+        font-size: 2em;
+        line-height: .7;
+        position: relative
+    }
+
+        
+
+</style>
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-1-4 border-right" >
+                <img src="https://res.cloudinary.com/dlrmdokvi/image/upload/v1629842389/489baf2d29ab40adef7e83b7b89dce1f_sqa7t4.gif" width="200"/>
+                <br />
+                <p class="name">@localizer["Tags"]</p>
+                @foreach (var tag in ViewBag.Tags)
+                {
+                    <a class="btn btn-outline-success btn-rounded" asp-controller="Items" asp-action="SearchByTag" asp-route-tag="@tag">
+                        <i class="fa fa-tag"
+                           aria-hidden="true"></i>@tag
+                    </a>
+                }
+            </div>
+            <div class="col-2-4">
+                <div class="row">
+                    <div>
+                        <p class="name" style="margin-left:30px;">@localizer["LargestCollections"]</p>
+                        @await Html.PartialAsync("~/Views/Collections/Index.cshtml", Model)
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <p class="name" style="margin-left:30px;">@localizer["LatestItems"]</p>
+                        @await Html.PartialAsync("~/Views/Items/Index.cshtml", Model.First().Items)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

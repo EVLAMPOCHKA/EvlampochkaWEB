@@ -1,0 +1,137 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model EvlampochkaWEB.Models.Collection
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script type="text/javascript">
+    function ChangeDiv(id) {
+        document.getElementById(id).hidden == true ? document.getElementById(id).hidden = false : document.getElementById(id).hidden = true;
+    }
+</script>
+
+
+
+<h4>@localizer["LetsCreate"]</h4>
+<hr />
+<div class="row">
+    <aside class="col-sm-8 border-right">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CollectionName" class="control-label">@localizer["CollectionName"]</label>
+                <input asp-for="CollectionName" class="form-control" required placeholder="Enter name of you collection" />
+                <span asp-validation-for="CollectionName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Theme" class="control-label">@localizer["Theme"]</label>
+                <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Themes>()" class="form-control"></select>
+                <span asp-validation-for="Theme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDiscription" class="control-label">@localizer["ShortDiscription"]</label>
+                <input asp-for="ShortDiscription" required class="form-control" />
+                <span asp-validation-for="ShortDiscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LongDiscrioption" class="control-label">@localizer["LongDiscription"]</label>
+                <textarea asp-for="LongDiscrioption" required class="form-control"> </textarea>
+                <span asp-validation-for="LongDiscrioption" class="text-danger"></span>
+            </div>
+
+            <div class="form-check form-switch">
+                <input type="checkbox" onclick="ChangeDiv('Add')" id="Check" />
+                <label for="Check">@localizer["Add"]</label>
+            </div>
+            <div id="Add" hidden="hidden">
+                <div class="form-check form-switch">
+                    <input type="checkbox" onclick="ChangeDiv('AddString')" id="AddStringField" />
+                    <label for="AddStringField">@localizer["AddString"]</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input type="checkbox" onclick="ChangeDiv('AddDate')" id="AddDateField" />
+                    <label for="AddDateField">@localizer["AddDate"]</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input type="checkbox" onclick="ChangeDiv('AddBool')" id="AddBoolField" />
+                    <label for="AddBoolField">@localizer["AddBool"]</label>
+                </div>
+            </div>
+            <div id="AddString" hidden="hidden">
+                <div class="form-group">
+                    <label asp-for="AddStringField0" class="control-label">@localizer["NewString"]</label>
+                    <input asp-for="AddStringField0" class="form-control" />
+                    <span asp-validation-for="AddStringField0" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddStringField1" class="control-label">@localizer["NewString"]</label>
+                    <input asp-for="AddStringField1" class="form-control" />
+                    <span asp-validation-for="AddStringField1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddStringField2" class="control-label">@localizer["NewString"]</label>
+                    <input asp-for="AddStringField2" class="form-control" />
+                    <span asp-validation-for="AddStringField2" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="AddDate" hidden="hidden">
+                <div class="form-group">
+                    <label asp-for="AddDateTimeField0" class="control-label">@localizer["NewDate"]</label>
+                    <input asp-for="AddDateTimeField0" class="form-control" />
+                    <span asp-validation-for="AddDateTimeField0" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddDateTimeField1" class="control-label">@localizer["NewDate"]</label>
+                    <input asp-for="AddDateTimeField1" class="form-control" />
+                    <span asp-validation-for="AddDateTimeField1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddDateTimeField2" class="control-label">@localizer["NewDate"]</label>
+                    <input asp-for="AddDateTimeField2" class="form-control" />
+                    <span asp-validation-for="AddDateTimeField2" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="AddBool" hidden="hidden">
+                <div class="form-group">
+                    <label asp-for="AddBoolField0" class="control-label">@localizer["NewBool"]</label>
+                    <input asp-for="AddBoolField0" class="form-control" />
+                    <span asp-validation-for="AddBoolField0" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddBoolField1" class="control-label">@localizer["NewBool"]</label>
+                    <input asp-for="AddBoolField1" class="form-control" />
+                    <span asp-validation-for="AddBoolField1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddBoolField2" class="control-label">@localizer["NewBool"]</label>
+                    <input asp-for="AddBoolField2" class="form-control" />
+                    <span asp-validation-for="AddBoolField2" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="@localizer["Create"]" class="btn btn-outline-info" />
+            </div>
+        </form>
+    </aside>
+    <aside class="col-sm-4">
+        <article>
+            <p>
+                @localizer["Info"]
+            </p>
+            <div>
+                <img src="https://i.pinimg.com/550x/e7/fc/7e/e7fc7e7b2487dd45b813d852acbfdacf.jpg" width="200" />
+            </div>
+        </article>
+
+    </aside>
+</div>
+
+<div>
+    <a asp-controller="Collections" asp-action="IndexForAuth">@localizer["Back"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,17 @@
+﻿@model EvlampochkaWEB.Models.Like
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Like">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemID" value="@ViewBag.ItemId" />
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit"><i class="fa fa-heart"></i></button>
+                <label>@ViewBag.Likes</label>
+            </div>
+        </form>
+    </div>
+</div>
